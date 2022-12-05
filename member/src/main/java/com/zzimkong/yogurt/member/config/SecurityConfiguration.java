@@ -2,16 +2,21 @@ package com.zzimkong.yogurt.member.config;
 
 import com.zzimkong.yogurt.member.security.JwtAuthenticationFilter;
 import com.zzimkong.yogurt.member.security.JwtTokenProvider;
+import com.zzimkong.yogurt.member.service.MemberCommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -28,7 +33,7 @@ public class SecurityConfiguration {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/sign-api/sign-up").permitAll()
+                .antMatchers("/members/sign-up", "/members/sign-in").permitAll()
                 .antMatchers(HttpMethod.GET, "/members/**").permitAll()
                 .anyRequest().hasRole("ADMIN")
                 .and()

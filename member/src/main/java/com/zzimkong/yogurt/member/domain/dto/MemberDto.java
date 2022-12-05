@@ -1,6 +1,7 @@
 package com.zzimkong.yogurt.member.domain.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
+@Builder
 public class MemberDto {
     private Long id;
     private String name;
