@@ -1,6 +1,8 @@
 package com.zzimkong.yogurt.member.controller;
 
 import com.zzimkong.yogurt.member.domain.dto.MemberDto;
+import com.zzimkong.yogurt.member.domain.dto.SignInDto;
+import com.zzimkong.yogurt.member.domain.dto.SignInResultDto;
 import com.zzimkong.yogurt.member.domain.dto.SignUpDto;
 import com.zzimkong.yogurt.member.service.MemberCommandService;
 import com.zzimkong.yogurt.member.service.MemberQueryService;
@@ -29,5 +31,10 @@ public class MemberController {
     @PostMapping("/sign-up")
     public MemberDto signUp(@RequestBody SignUpDto signUpDto) {
         return memberCommandService.signUp(signUpDto);
+    }
+
+    @PostMapping("/sign-in")
+    public SignInResultDto signIn(@RequestBody SignInDto signInDto) {
+        return memberCommandService.signIn(signInDto);
     }
 }

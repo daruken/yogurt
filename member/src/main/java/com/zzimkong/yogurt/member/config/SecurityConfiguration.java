@@ -33,7 +33,7 @@ public class SecurityConfiguration {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/members/sign-up").permitAll()
+                .antMatchers("/members/sign-up", "/members/sign-in").permitAll()
                 .antMatchers(HttpMethod.GET, "/members/**").permitAll()
                 .anyRequest().hasRole("ADMIN")
                 .and()
